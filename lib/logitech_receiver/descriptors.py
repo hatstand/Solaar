@@ -91,6 +91,9 @@ def _D(name, codename=None, kind=None, wpid=None, protocol=None, registers=None,
 
 _PERFORMANCE_MX_DPIS = _NamedInts.range(0x81, 0x8F, lambda x: str((x - 0x80) * 100))
 
+_MX_MASTER_DPIS = _NamedInts.range(400, 1600, step=200)
+_MX_MASTER_SMART_SHIFT_CHOICES = _NamedInts(**{str(a):a for a in range(4,50,4)}, **{'off': 255})
+
 #
 #
 #
@@ -268,6 +271,13 @@ _D('Performance Mouse MX', codename='Performance MX', protocol=1.0, wpid='101A',
 							_RS.dpi(choices=_PERFORMANCE_MX_DPIS),
 							_RS.smooth_scroll(),
 							_RS.side_scroll(),
+						],
+				)
+
+_D('MX Master', codename='MX Master', protocol=4.5, wpid='4041', kind=_DK.mouse,
+				settings=[
+							_FS.dpi(choices=_MX_MASTER_DPIS),
+							_FS.smart_shift(choices=_MX_MASTER_SMART_SHIFT_CHOICES),
 						],
 				)
 
