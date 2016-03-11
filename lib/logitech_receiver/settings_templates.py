@@ -145,6 +145,12 @@ def _feature_smooth_scroll():
 					label=_SMOOTH_SCROLL[1], description=_SMOOTH_SCROLL[2],
 					device_kind=_DK.mouse)
 
+def _feature_dpi(choices=None):
+	return feature_choices(_DPI[0], _F.ADJUSTABLE_DPI, choices,
+					read_function_id=0x20, write_function_id=0x30,
+					label=_DPI[1], description=_DPI[2],
+					device_kind=_DK.mouse)
+
 #
 #
 #
@@ -175,7 +181,7 @@ FeatureSettings =  _SETTINGS_LIST(
 				new_fn_swap=_feature_new_fn_swap,
 				smooth_scroll=_feature_smooth_scroll,
 				side_scroll=None,
-				dpi=None,
+				dpi=_feature_dpi,
 				hand_detection=None,
 				typing_illumination=None,
 			)
