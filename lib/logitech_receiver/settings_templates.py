@@ -70,6 +70,16 @@ def feature_toggle(name, feature,
 	rw = _FeatureRW(feature, read_function_id, write_function_id)
 	return _Setting(name, rw, validator, label=label, description=description, device_kind=device_kind)
 
+def feature_choices(name, feature, choices,
+					read_function_id=_FeatureRW.default_read_fnid,
+					write_function_id=_FeatureRW.default_write_fnid,
+					kind=_KIND.choice,
+					label=None, description=None, device_kind=None):
+	assert choices
+	validator = _ChoicesV(choices)
+	rw = _FeatureRW(feature, read_function_id, write_function_id, offset=1)
+	return _Setting(name, rw, validator, kind=kind, label=label, description=description, device_kind=device_kind)
+
 #
 # common strings for settings
 #
