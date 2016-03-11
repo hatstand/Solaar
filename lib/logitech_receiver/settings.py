@@ -179,25 +179,26 @@ class RegisterRW(object):
 
 
 class FeatureRW(object):
-	__slots__ = ('feature', 'read_fnid', 'write_fnid')
+	__slots__ = ('feature', 'read_fnid', 'write_fnid', 'offset')
 
 	kind = _NamedInt(0x02, 'feature')
 	default_read_fnid = 0x00
 	default_write_fnid = 0x10
 
-	def __init__(self, feature, read_fnid=default_read_fnid, write_fnid=default_write_fnid):
+	def __init__(self, feature, read_fnid=default_read_fnid, write_fnid=default_write_fnid, offset=0):
 		assert isinstance(feature, _NamedInt)
 		self.feature = feature
 		self.read_fnid = read_fnid
 		self.write_fnid = write_fnid
+		self.offset = offset
 
 	def read(self, device):
 		assert self.feature is not None
-		return device.feature_request(self.feature, self.read_fnid)
+		return device.feature_request(self.feature, self.read_fnid)[self.offset:]
 
 	def write(self, device, data_bytes):
 		assert self.feature is not None
-		return device.feature_request(self.feature, self.write_fnid, data_bytes)
+		return device.feature_request(self.feature, self.write_fnid, b'\0'*self.offset + data_bytes)
 
 #
 # value validators
