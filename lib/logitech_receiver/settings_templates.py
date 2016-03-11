@@ -98,7 +98,8 @@ _FN_SWAP = ('fn-swap', _("Swap Fx function"),
 						 	"and you must hold the FN key to activate their special function."))
 _HAND_DETECTION = ('hand-detection', _("Hand Detection"),
 							_("Turn on illumination when the hands hover over the keyboard."))
-
+_SMART_SHIFT = ('smart-shift', _("Smart Shift"),
+							_("Automatically switch the mouse wheel between step and free mode."))
 #
 #
 #
@@ -151,6 +152,11 @@ def _feature_dpi(choices=None):
 					label=_DPI[1], description=_DPI[2],
 					device_kind=_DK.mouse)
 
+def _feature_smart_shift(choices=None):
+	return feature_choices(_SMART_SHIFT[0], _F.SMART_SHIFT, choices,
+					label=_SMART_SHIFT[1], description=_SMART_SHIFT[2],
+					device_kind=_DK.mouse)
+
 #
 #
 #
@@ -164,6 +170,7 @@ _SETTINGS_LIST = namedtuple('_SETTINGS_LIST', [
 					'dpi',
 					'hand_detection',
 					'typing_illumination',
+					'smart_shift',
 					])
 del namedtuple
 
@@ -175,6 +182,7 @@ RegisterSettings = _SETTINGS_LIST(
 				dpi=_register_dpi,
 				hand_detection=_register_hand_detection,
 				typing_illumination=None,
+				smart_shift=None,
 			)
 FeatureSettings =  _SETTINGS_LIST(
 				fn_swap=_feature_fn_swap,
@@ -184,6 +192,7 @@ FeatureSettings =  _SETTINGS_LIST(
 				dpi=_feature_dpi,
 				hand_detection=None,
 				typing_illumination=None,
+				smart_shift=_feature_smart_shift,
 			)
 
 del _SETTINGS_LIST
