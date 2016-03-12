@@ -89,7 +89,7 @@ _SMOOTH_SCROLL = ('smooth-scroll', _("Smooth Scrolling"),
 _SIDE_SCROLL = ('side-scroll', _("Side Scrolling"),
 							_("When disabled, pushing the wheel sideways sends custom button events\n"
 							"instead of the standard side-scrolling events."))
-_DPI = ('dpi', _("Sensitivity (DPI)"), None)
+_DPI = ('dpi', _("Sensitivity (DPI)"), '')
 _FN_SWAP = ('fn-swap', _("Swap Fx function"),
 							_("When set, the F1..F12 keys will activate their special function,\n"
 						 	"and you must hold the FN key to activate their standard function.")
