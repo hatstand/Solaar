@@ -92,7 +92,9 @@ def _D(name, codename=None, kind=None, wpid=None, protocol=None, registers=None,
 _PERFORMANCE_MX_DPIS = _NamedInts.range(0x81, 0x8F, lambda x: str((x - 0x80) * 100))
 
 _MX_MASTER_DPIS = _NamedInts.range(400, 1600, step=200)
-_MX_MASTER_SMART_SHIFT_CHOICES = _NamedInts(**{str(a):a for a in range(4,50,4)}, **{'off': 255})
+_MX_MASTER_SMART_SHIFT_CHOICES = _NamedInts(
+    off=255,
+    **{str(a): a for a in range(4, 50, 4)})
 
 #
 #
